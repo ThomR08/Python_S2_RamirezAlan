@@ -5,7 +5,7 @@
 cantidad=int(input("¿Cuántos empleados quieres ingresar? :"))
 
 auxEmpleado=str(input("Ingresa el nombre del empleado 1: "))
-auxHoras=int(input("Ingresa el numero de horas trabajadas de ", auxEmpleado, ": "))
+auxHoras=int(input("Ingresa el numero de horas trabajadas de " + auxEmpleado + ": "))
 
 horasMayor=auxHoras
 empleadoMayor=auxEmpleado
@@ -14,15 +14,14 @@ empleadoMenor=auxEmpleado
 horasSuma=auxHoras
 
 for i in range(2,cantidad+1,1):
-    auxEmpleado=str(input("Ingresa el nombre del empleado ", i, ": "))
-    auxHoras=int(input("Ingresa el numero de horas trabajadas de ", auxEmpleado, ": "))
+    auxEmpleado=str(input(f"Ingresa el nombre del empleado {i}: "))
+    auxHoras=int(input("Ingresa el numero de horas trabajadas de " + auxEmpleado + ": "))
+    horasSuma=horasSuma+auxHoras
 
-horasSuma=horasSuma+auxHoras
-
- if(auxHoras>horasMayor):
+    if(auxHoras>horasMayor):
         horasMayor=auxHoras
         empleadoMayor=auxEmpleado
-if(auxHoras<horasMenor):
+    if(auxHoras<horasMenor):
         horasMenor=auxHoras
         empleadoMenor=auxEmpleado
 
@@ -41,9 +40,34 @@ promedioHoras=horasSuma/cantidad
 print("")
 print("---------------------------------------")
 print("")
+print("El promedio de horas trabajadas por empleado es de : ", promedioHoras)
+print("")
+print("---------------------------------------")
+print("")
 print("Empleado que mas gana y el empleado que menos gana")
 print("")
 print("---------------------------------------")
+print("")
 
+print(empleadoMayor, " es el empleado que mas gana.")
+print("Sueldo bruto : ", SueldoBMayor)
+print("Descuentos :")
+print("EPS : $-", epsMayor)
+print("Pension : $-", pensionMayor)
+print("Sueldo neto: ", sueldoNMayor)
+print("")
+print("---------------------------------------------")
+print("")
+print(empleadoMenor, " es el empleado que menos gana.")
+print("Sueldo bruto : ", SueldoBMenor)
+print("Descuentos :")
+print("EPS : $-", epsMenor)
+print("Pension : $-", pensionMenor)
+print("Sueldo neto: ", sueldoNMenor)
+print("")
+print("---------------------------------------------")
+print("")
 
-#Desarrollado por: Alan Ramirez - T.I. 1096702159
+print("Gracias por usar el programa")
+
+# Desarrollado por: Alan Ramirez - T.I. 1096702159

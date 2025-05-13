@@ -57,13 +57,13 @@ while(booleanito):
     "edad":int(input("Ingrese la Edad de la nueva persona: ")),
 }
         diccionarioVacio["telefonos"]=[]
+        
 
         for i in range(0, int(input("Ingrese cuantos números telefonicos desea ingresar: "))):
             diccionarioVacio["telefonos"].append({f"codigo":int(input(f"Ingrese el Codigo del número {i+1} de la nueva persona: ")),"numero":int(input(f"Ingrese el Número {i+1} de la nueva persona: ")),"tipo":str(input(f"Ingrese el Tipo del número {i+1} de la nueva persona: "))})
+            print("")
         listaRobusta.append(diccionarioVacio)
-        print(diccionarioVacio)
-        print("=====================")
-        print(listaRobusta)
+        
 
     elif(opcionUsuario==2):
         for i in range(len(listaRobusta)):

@@ -1,11 +1,11 @@
 # Class Day 9
 #
 from functionsGGDD import *
-from functions import *
 
 # Perform CRUD operations on jsonLime.json
 
 artistList = openJSON()
+LogsArtistList = openLogsJSON()
 
 print("")
 print("Welcome to the Artist Library")
@@ -29,15 +29,131 @@ while(keepRunning):
         print("-----------------------------")
         print("--- Create Artist ---")
         print("-----------------------------")
+        print("")
         diccionaryEmpty={
-            "Artist name": str(input("Enter the Artist name")),
-            "Country": "United Kingdom",
-            "Active years": "1960\\u20131970",
-            "Release year of first charted record": 1962,
-            "Genre": "Rock\\/pop",
-            "Total certified units": "294.6 millionUS: 217.250 millionJPN: 4.950 millionGER: 8 millionUK: 34.355 millionFRA: 4.090 millionCAN: 14.455 millionAUS: 3.060 millionBRA: 580,000NLD: 345,000ITA: 640,000SPA: 1.250 millionSWE: 485,000NOR: 200,000DEN: 610,000SWI: 350,000ARG: 1.926 millionBEL: 440,000AUT: 500,000POL: 175,000FIN: 118,048NZ: 660,000POR: 135,000",
-            "Claimed sales": "600 million500 million"
+            "Artist name": str(input("Enter the Artist name: ")),
+            "Country": str(input("Enter the Country of artist: ")),
+            "Active years": str(input("Enter the Active years of artist: ")),
+            "Release year of first charted record": int(input("Enter the Release year of first charted record of artist: ")),
+            "Genre": str(input("Enter the Genre of artist: ")),
+            "Total certified units": str(input("Enter the Total certified units of artist: ")),
+            "Claimed sales": str(input("Enter the Claimed sales of artist: "))
         }
+        print("")
+        artistList.append(diccionaryEmpty)
+        saveJSON(artistList)
+        artistList = openJSON()
 
+    elif userOption==2:
+        print("-----------------------------")
+        print("--- Show All Artists ---")
+        print("-----------------------------")
+        print("")
+        for i in range(len(artistList)):
+            print("-----------------------------")
+            print("--- Artist #",i+1," ---")
+            print("-----------------------------")
+            print("")
+            print("Artist name:", artistList[i]["Artist name"])
+            print("Country:", artistList[i]["Country"])
+            print("Active years:", artistList[i]["Active years"])
+            print("Release year of first charted record", artistList[i]["Release year of first charted record"])
+            print("Genre:", artistList[i]["Genre"])
+            print("Total certified units:", artistList[i]["Total certified units"])
+            print("Claimed sales:", artistList[i]["Claimed sales"])
+            print("")
+    elif userOption==3:
+        print("-----------------------------")
+        print("--- Show a Single Artist ---")
+        print("-----------------------------")
+        print("")
+        searchArtist=int(input("Enter the number of artist for Show: "))
+        print("")
+        if searchArtist<=len(artistList):
+            searchArtist-=1
+            print("-----------------------------")
+            print("--- Artist #",searchArtist+1," ---")
+            print("-----------------------------")
+            print("")
+            print("Artist name:", artistList[searchArtist]["Artist name"])
+            print("Country:", artistList[searchArtist]["Country"])
+            print("Active years:", artistList[searchArtist]["Active years"])
+            print("Release year of first charted record", artistList[searchArtist]["Release year of first charted record"])
+            print("Genre:", artistList[searchArtist]["Genre"])
+            print("Total certified units:", artistList[searchArtist]["Total certified units"])
+            print("Claimed sales:", artistList[searchArtist]["Claimed sales"])
+            print("")
+        else:
+            print("Artist not found")
+            print("")
+    elif userOption==4:
+        print("-----------------------------")
+        print("--- Update a Specific Artist ---")
+        print("-----------------------------")
+        print("")
+        searchArtist=int(input("Enter the number of artist for Update: "))
+        print("")
+        if searchArtist<=len(artistList):
+            searchArtist-=1
+            print("--- Past data: ---")
+            print("")
+            print("-----------------------------")
+            print("--- Artist #",searchArtist+1," ---")
+            print("-----------------------------")
+            print("")
+            print("Artist name:", artistList[searchArtist]["Artist name"])
+            print("Country:", artistList[searchArtist]["Country"])
+            print("Active years:", artistList[searchArtist]["Active years"])
+            print("Release year of first charted record", artistList[searchArtist]["Release year of first charted record"])
+            print("Genre:", artistList[searchArtist]["Genre"])
+            print("Total certified units:", artistList[searchArtist]["Total certified units"])
+            print("Claimed sales:", artistList[searchArtist]["Claimed sales"])
+            print("")
+            print("--- New data: ---")
+            print("")
+            print("-----------------------------")
+            print("--- Artist #",searchArtist+1," ---")
+            print("-----------------------------")
+            artistList[searchArtist]["Artist name"]=str(input("Enter the Artist name: ")),
+            artistList[searchArtist]["Country"]=str(input("Enter the Country of artist: ")),
+            artistList[searchArtist]["Active years"]=str(input("Enter the Active years of artist: ")),
+            artistList[searchArtist]["Release year of first charted record"]=int(input("Enter the Release year of first charted record of artist: ")),
+            artistList[searchArtist]["Genre"]=str(input("Enter the Genre of artist: ")),
+            artistList[searchArtist]["Total certified units"]=str(input("Enter the Total certified units of artist: ")),
+            artistList[searchArtist]["Claimed sales"]=str(input("Enter the Claimed sales of artist: "))
+            print("")
+            saveJSON(artistList)
+            artistList = openJSON()
+            print("The artist has been successfully update")
+            print("")
+        else:
+            print("Artist not found")
+            print("")
+    elif userOption==5:
+        print("-----------------------------")
+        print("--- Delete a Specific Artist ---")
+        print("-----------------------------")
+        print("")
+        searchArtist=int(input("Enter the number of artist for Delete: "))
+        print("")
+        if searchArtist<=len(artistList):
+            searchArtist-=1
+            eliminateArtist=artistList.pop(searchArtist)
+            LogsArtistList.append(eliminateArtist)
+            saveLogsJSON(LogsArtistList)
+            LogsArtistList=openLogsJSON()
+            saveJSON(artistList)
+            artistList=openJSON()
+            print("The artist has been successfully removed")
+            print("")
+        else:
+            print("Artist not found")
+            print("")
+    elif userOption==6:
+        print("Bye bye")
+        keepRunning=False
+    else:
+        print("It is not a valid option")
+        print("")
 
 # Developed by: Alan Ramirez - ID 1096702159
